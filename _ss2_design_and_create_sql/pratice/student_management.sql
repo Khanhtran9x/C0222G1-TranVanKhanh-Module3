@@ -1,0 +1,8 @@
+CREATE DATABASE StudentManagement;
+USE StudentManagement;
+CREATE TABLE class(
+ClassID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+ClassName VARCHAR(60) NOT NULL,
+StartDate DATETIME NOT NULL,
+Status BIT
+);
