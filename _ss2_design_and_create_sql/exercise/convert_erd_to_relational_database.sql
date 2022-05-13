@@ -56,10 +56,9 @@ insert into chi_tiet_don_dat_hang values(100, 50);
 create table nha_cung_cap(
 ma_ncc int primary key,
 ten_ncc varchar(50),
-dia_chi varchar(100),
-so_dien_thoai varchar(10)
+dia_chi varchar(100)
 );
-insert into nha_cung_cap values(1001, 'Ang Son', 'Van Ninh, Quang Binh', '0912302312');
+insert into nha_cung_cap (ma_ncc, ten_ncc, dia_chi) values (1001, 'Ang Son', 'Van Ninh, Quang Binh');
 
 create table cung_cap(
 so_don_hang int,
@@ -69,3 +68,10 @@ foreign key (ma_ncc) references nha_cung_cap(ma_ncc)
 );
 insert into cung_cap values(50, 1001);
 
+create table so_dien_thoai(
+ma_ncc int,
+sdt varchar(20),
+foreign key(ma_ncc) references nha_cung_cap(ma_ncc),
+primary key(ma_ncc, sdt)
+);
+insert into so_dien_thoai values (1001, '09658892456')
