@@ -91,3 +91,18 @@ FROM student s JOIN mark m ON s.student_id = m.student_id
 GROUP BY s.student_name
 HAVING AVG(mark) >= ALL (SELECT AVG(mark) FROM mark GROUP BY mark.student_id);
 
+SELECT sub_id, sub_name, MAX(credit), status
+FROM `subject`
+GROUP BY sub_id
+HAVING MAX(credit) >= ALL (SELECT MAX(credit) FROM `subject`);
+
+SELECT sub.sub_id, sub.sub_name, sub.credit, sub.status, MAX(mark)
+FROM `subject` sub JOIN mark m ON sub.sub_id = m.sub_id
+GROUP BY sub.sub_id
+HAVING MAX(mark) >= ALL (SELECT MAX(mark) FROM mark);
+
+SELECT s.student_id, s.student_name, s.address, s.phone, s.status, s.class_id, AVG(mark)
+FROM student s JOIN mark m ON s.student_id = m.student_id
+GROUP BY s.student_id
+ORDER BY m.mark DESC;
+
