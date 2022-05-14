@@ -50,3 +50,10 @@ values(1, 1, 3),
       (3, 1, 8),
       (2, 5, 4),
       (2, 3, 3);
+
+select o_id, o_date, o_total_price
+from `order`;
+
+select c.c_id, c.c_name
+from customer c join `order` o on c.c_id = o.c_id
+GROUP BY c.c_id;
