@@ -106,8 +106,3 @@ so_luong INT,
 FOREIGN KEY (ma_hop_dong) REFERENCES hop_dong(ma_hop_dong),
 FOREIGN KEY (ma_dich_vu_di_kem) REFERENCES dich_vu_di_kem(ma_dich_vu_di_kem)
 );
-
-
-
-
-
