@@ -46,7 +46,8 @@ VALUES  (1,'Hồ bơi',30,'USD','Open'),
 INSERT INTO dich_vu
 VALUES  (1,'Villa', 60, 2000, 4, 1, 1,'Luxury', 'Hồ bơi',25,4),       
 		(2,'House', 100, 3000, 10, 2, 2,'Standard','Miễn phí bữa sáng',40,6),       
-		(3,'Room', 40, 300, 2, 3, 3,'Standard','Miễn phí nước uống',null,null);    
+		(3,'Room', 40, 300, 2, 3, 3,'Standard','Miễn phí nước uống',null,null),
+        (4,'House', 200, 500, 15, 2, 2,'Standard','Miễn phí bữa tối',40,6);    
         
 INSERT INTO nhan_vien 
 VALUES  (1,'Trần Văn Khánh','1995-01-12','1231313131','1500','0913213120','khanh@gmail.com','Sơn Trà',1,1,1),        
@@ -61,10 +62,8 @@ VALUES  (1,1,'Nguyễn Thanh Kha','1994-05-14', 1,'12391232131','09123123112','k
         
 INSERT INTO hop_dong
 VALUES  (1,'2022-07-25 00:00:00','2022-07-25 00:00:00',500,1,1,1),
-		(2,'2022-05-30 00:00:00','2022-05-30 00:00:00',600,2,2,2),
-        (3,'2022-10-25 00:00:00','2022-10-25 00:00:00',500,3,1,1);
+		(2,'2022-05-30 00:00:00','2022-05-30 00:00:00',600,2,2,2);
         
 INSERT INTO hop_dong_chi_tiet 
 VALUES  (1,1,2,2),
-		(2,2,3,3),
-        (3,3,2,2);
+		(2,2,3,3);

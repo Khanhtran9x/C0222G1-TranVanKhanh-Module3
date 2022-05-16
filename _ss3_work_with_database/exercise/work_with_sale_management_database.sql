@@ -54,6 +54,18 @@ values(1, 1, 3),
 select o_id, o_date, o_total_price
 from `order`;
 
-select c.c_id, c.c_name
-from customer c join `order` o on c.c_id = o.c_id
+select c.c_id, c.c_name, p.p_name
+from customer c join `order` o on c.c_id = o.c_id, 
+`order` d join order_detail od on d.o_id = od.o_id,
+order_detail ode join product p on ode.p_id = p.p_id
 GROUP BY c.c_id;
+
+select c.c_id, c.c_name
+from customer c
+where not exists (select null from `order` o where o.c_id = c.c_id);
+
+select od.o_id, o.o_date, sum(od_qty * p.p_price) as total_price
+from order_detail od 
+join `order` o on od.o_id = o.o_id 
+join product p on od.p_id = p.p_id
+group by od.o_id;
