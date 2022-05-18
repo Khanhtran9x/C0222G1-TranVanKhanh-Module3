@@ -139,8 +139,49 @@ JOIN hop_dong hd ON nv.ma_nhan_vien = hd.ma_nhan_vien
 WHERE YEAR(hd.ngay_lam_hop_dong) = 2020 OR YEAR(hd.ngay_lam_hop_dong) = 2021 OR YEAR(hd.ngay_lam_hop_dong) = 2022)) AS X);
 
 -- Task 17
+SET SQL_SAFE_UPDATES = 0;
 UPDATE khach_hang 
 SET ma_loai_khach = 1
-WHERE ma_loai_khach ;
+WHERE ho_ten IN (
+SELECT ho_ten FROM (
+SELECT ho_ten
+FROM khach_hang kh
+JOIN hop_dong hd ON kh.ma_khach_hang = hd.ma_khach_hang
+JOIN hop_dong_chi_tiet hdct ON hd.ma_hop_dong = hdct.ma_hop_dong
+JOIN dich_vu_di_kem dvdk ON hdct.ma_dich_vu_di_kem = dvdk.ma_dich_vu_di_kem
+WHERE (hd.tien_dat_coc + hdct.so_luong * dvdk.gia) > 600
+GROUP BY kh.ho_ten) AS X);
 
-SELECT 
+-- Task 18
+SET SQL_SAFE_UPDATES = 0;
+DELETE FROM khach_hang
+WHERE ma_khach_hang IN (
+SELECT ma_khach_hang FROM
+(SELECT kh.ma_khach_hang
+FROM khach_hang kh
+JOIN hop_dong hd ON kh.ma_khach_hang = hd.ma_khach_hang
+WHERE YEAR(hd.ngay_lam_hop_dong) < 2021 AND hd.ma_khach_hang 
+NOT IN (
+SELECT kh.ma_khach_hang
+FROM khach_hang kh
+JOIN hop_dong hd ON kh.ma_khach_hang = hd.ma_khach_hang
+WHERE YEAR(hd.ngay_lam_hop_dong) >= 2021)
+GROUP BY hd.ma_khach_hang
+) AS X);
+
+-- Task 19
+UPDATE dich_vu_di_kem
+SET gia = gia * 2
+WHERE ma_dich_vu_di_kem IN (
+SELECT ma_dich_vu_di_kem
+FROM hop_dong_chi_tiet
+GROUP BY ma_dich_vu_di_kem
+HAVING SUM(so_luong) > 2
+);
+
+-- Task 20
+SELECT ma_nhan_vien AS ma, ho_ten, email, so_dien_thoai, ngay_sinh, dia_chi
+FROM nhan_vien
+UNION
+SELECT ma_khach_hang AS ma, ho_ten, email, so_dien_thoai, ngay_sinh, dia_chi
+FROM khach_hang;

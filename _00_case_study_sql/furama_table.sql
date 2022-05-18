@@ -93,9 +93,9 @@ tien_dat_coc DOUBLE,
 ma_nhan_vien INT,
 ma_khach_hang INT,
 ma_dich_vu INT,
-FOREIGN KEY (ma_nhan_vien) REFERENCES nhan_vien(ma_nhan_vien),
-FOREIGN KEY (ma_khach_hang) REFERENCES khach_hang(ma_khach_hang),
-FOREIGN KEY (ma_dich_vu) REFERENCES dich_vu(ma_dich_vu)
+FOREIGN KEY (ma_nhan_vien) REFERENCES nhan_vien(ma_nhan_vien)  ON DELETE CASCADE,
+FOREIGN KEY (ma_khach_hang) REFERENCES khach_hang(ma_khach_hang)  ON DELETE CASCADE,
+FOREIGN KEY (ma_dich_vu) REFERENCES dich_vu(ma_dich_vu)  ON DELETE CASCADE 
 );
 
 CREATE TABLE hop_dong_chi_tiet(
