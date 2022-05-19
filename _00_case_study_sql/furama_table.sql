@@ -103,6 +103,23 @@ ma_hop_dong_chi_tiet INT PRIMARY KEY,
 ma_hop_dong INT,
 ma_dich_vu_di_kem INT,
 so_luong INT,
-FOREIGN KEY (ma_hop_dong) REFERENCES hop_dong(ma_hop_dong),
-FOREIGN KEY (ma_dich_vu_di_kem) REFERENCES dich_vu_di_kem(ma_dich_vu_di_kem)
+FOREIGN KEY (ma_hop_dong) REFERENCES hop_dong(ma_hop_dong) ON DELETE CASCADE,
+FOREIGN KEY (ma_dich_vu_di_kem) REFERENCES dich_vu_di_kem(ma_dich_vu_di_kem) ON DELETE CASCADE
+);
+
+CREATE TABLE hop_dong_log(
+so_ban_ghi INT
+);
+
+CREATE TABLE update_hop_dong_log(
+error VARCHAR(100)
+);
+
+CREATE TABLE so_dich_vu_log(
+so_luong INT
+);
+
+CREATE TABLE khoang_thoi_gian_log(
+ma_khach_hang INT,
+days INT
 );

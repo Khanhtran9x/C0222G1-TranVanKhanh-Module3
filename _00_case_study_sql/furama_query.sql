@@ -185,3 +185,139 @@ FROM nhan_vien
 UNION
 SELECT ma_khach_hang AS ma, ho_ten, email, so_dien_thoai, ngay_sinh, dia_chi
 FROM khach_hang;
+
+-- Task 21
+CREATE VIEW v_nhan_vien AS
+SELECT nv.ma_nhan_vien, nv.ho_ten, nv.ngay_sinh, nv.so_cmnd, nv.luong, nv.so_dien_thoai, nv.email, nv.dia_chi
+FROM nhan_vien nv
+JOIN hop_dong hd ON nv.ma_nhan_vien = hd.ma_nhan_vien
+WHERE YEAR(hd.ngay_lam_hop_dong) = 2022 AND nv.dia_chi = 'Sơn Trà';
+
+SELECT * FROM v_nhan_vien;
+
+-- Task 22
+UPDATE v_nhan_vien
+SET dia_chi = 'Hải Châu'
+WHERE ma_nhan_vien = 1;
+
+-- Task 23
+DELIMITER $$
+CREATE PROCEDURE sp_xoa_khach_hang(ma_khach_hang INT)
+BEGIN
+DELETE FROM khach_hang kh
+WHERE kh.ma_khach_hang = ma_khach_hang;
+END $$
+DELIMITER ;
+
+CALL sp_xoa_khach_hang(2);
+
+-- Task 24
+DELIMITER $$
+CREATE PROCEDURE sp_them_moi_hop_dong(ma_hop_dong INT,
+									  ngay_lam_hop_dong DATETIME,
+                                      ngay_ket_thuc DATETIME,
+                                      tien_dat_coc DOUBLE,
+									  ma_nhan_vien INT,
+									  ma_khach_hang INT,
+									  ma_dich_vu INT)
+BEGIN
+IF ma_hop_dong NOT IN (SELECT ma_hop_dong FROM hop_dong)
+AND  ma_nhan_vien IN (SELECT ma_nhan_vien FROM nhan_vien)
+AND ma_khach_hang IN (SELECT ma_khach_hang FROM khach_hang)
+AND ma_dich_vu IN (SELECT ma_dich_vu FROM dich_vu)
+THEN
+INSERT INTO hop_dong
+VALUES (ma_hop_dong, ngay_lam_hop_dong, ngay_ket_thuc, tien_dat_coc, ma_nhan_vien, ma_khach_hang, ma_dich_vu);
+END IF;
+END $$
+DELIMITER ;
+CALL sp_them_moi_hop_dong(9, '2022-05-30 00:00:00', '2022-06-30 00:00:00', 500, 1, 1, 1);
+
+-- Task 25
+DELIMITER $$
+CREATE TRIGGER tr_xoa_hop_dong 
+AFTER DELETE ON hop_dong
+FOR EACH ROW
+BEGIN
+INSERT INTO hop_dong_log SELECT COUNT(*) FROM hop_dong;
+END $$
+DELIMITER ;
+
+DROP TRIGGER tr_xoa_hop_dong;
+
+SET SQL_SAFE_UPDATES = 0;
+DELETE FROM hop_dong 
+WHERE ma_hop_dong = 8;
+
+-- Task 26
+DELIMITER $$
+CREATE TRIGGER tr_cap_nhat_hop_dong
+BEFORE UPDATE ON hop_dong
+FOR EACH ROW
+BEGIN
+IF DATEDIFF(NEW.ngay_ket_thuc, OLD.ngay_lam_hop_dong) > 2
+THEN
+INSERT INTO update_hop_dong_log VALUES('Cập nhật thành công');
+ELSE
+INSERT INTO update_hop_dong_log VALUES('Cập nhật lỗi');
+END IF;
+END $$
+DELIMITER ;
+
+DROP TRIGGER tr_cap_nhat_hop_dong;
+
+UPDATE hop_dong
+SET ngay_ket_thuc = '2020-03-30 00:00:00'
+WHERE ma_hop_dong = 6;
+
+-- Task 27
+-- a
+DELIMITER $$
+CREATE FUNCTION func_dem_dich_vu()
+RETURNS INT
+DETERMINISTIC
+BEGIN
+DECLARE so_dich_vu INT;
+SET so_dich_vu = (
+SELECT COUNT(*) AS so_luong FROM hop_dong hd
+JOIN dich_vu dv ON hd.ma_dich_vu = dv.ma_dich_vu
+WHERE dv.chi_phi_thue >= 2000);
+RETURN so_dich_vu;
+END $$
+DELIMITER ;
+
+INSERT INTO so_dich_vu_log VALUES (func_dem_dich_vu());
+
+-- b
+DELIMITER $$
+CREATE FUNCTION func_tinh_thoi_gian_hop_dong(kh_id INT)
+RETURNS INT
+DETERMINISTIC
+BEGIN
+DECLARE khoang_thoi_gian INT;
+SET khoang_thoi_gian = (
+SELECT MAX(DATEDIFF(hd.ngay_ket_thuc, hd.ngay_lam_hop_dong)) AS khoang_thoi_gian
+FROM hop_dong hd WHERE hd.ma_khach_hang = 2 GROUP BY hd.ma_khach_hang);
+RETURN khoang_thoi_gian;
+END $$
+DELIMITER ;
+
+INSERT INTO khoang_thoi_gian_log VALUES (2, func_tinh_thoi_gian_hop_dong(1));
+
+-- Task 28
+DELIMITER $$
+CREATE PROCEDURE sp_xoa_dich_vu_va_hd_room()
+BEGIN
+SET SQL_SAFE_UPDATES = 0;
+DELETE FROM dich_vu
+WHERE ma_dich_vu IN (
+SELECT ma_dich_vu FROM (
+SELECT dv.ma_dich_vu
+FROM dich_vu dv
+JOIN hop_dong hd ON dv.ma_dich_vu = hd.ma_dich_vu
+WHERE (YEAR(hd.ngay_lam_hop_dong) BETWEEN 2015 AND 2025) AND dv.ten_dich_vu = 'House'
+GROUP BY dv.ma_dich_vu) AS X);
+END $$
+DELIMITER ;
+DROP PROCEDURE sp_xoa_dich_vu_va_hd_room;
+CALL sp_xoa_dich_vu_va_hd_room();

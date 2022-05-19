@@ -1,0 +1,24 @@
+h1 {
+    color: blue;
+    font-family: Tahoma, SansSerif, serif;
+    font-size: 200%;
+    text-align: left;
+}
+
+p {
+    color: black;
+    font-family: Tahoma, SansSerif, serif;
+    font-size: 100%;
+    text-indent: 1em;
+    text-align: left;
+}
+
+.bold {
+    color: #3316ff;
+    font-weight: bold ;
+}
+
+.italic {
+    font-style: italic;
+    color: #3316ff;
+}
