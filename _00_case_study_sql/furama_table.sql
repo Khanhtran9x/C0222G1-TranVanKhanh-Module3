@@ -123,3 +123,7 @@ CREATE TABLE khoang_thoi_gian_log(
 ma_khach_hang INT,
 days INT
 );
+
+CREATE TABLE them_hop_dong_log(
+thong_bao VARCHAR(100)
+);

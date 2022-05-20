@@ -221,17 +221,26 @@ CREATE PROCEDURE sp_them_moi_hop_dong(ma_hop_dong INT,
 									  ma_khach_hang INT,
 									  ma_dich_vu INT)
 BEGIN
-IF ma_hop_dong NOT IN (SELECT ma_hop_dong FROM hop_dong)
-AND  ma_nhan_vien IN (SELECT ma_nhan_vien FROM nhan_vien)
-AND ma_khach_hang IN (SELECT ma_khach_hang FROM khach_hang)
-AND ma_dich_vu IN (SELECT ma_dich_vu FROM dich_vu)
+IF (EXISTS (SELECT hd.ma_hop_dong FROM hop_dong hd where hd.ma_hop_dong = ma_hop_dong)
+OR NOT EXISTS(SELECT nv.ma_nhan_vien FROM nhan_vien nv WHERE nv.ma_nhan_vien = ma_nhan_vien)
+OR NOT EXISTS(SELECT kh.ma_khach_hang FROM khach_hang kh WHERE kh.ma_khach_hang = ma_khach_hang)
+OR NOT EXISTS(SELECT dv.ma_dich_vu FROM dich_vu dv WHERE dv.ma_dich_vu = ma_dich_vu))
 THEN
+INSERT INTO them_hop_dong_log 
+VALUES ('Nhập lại mã');
+ELSE
+INSERT INTO them_hop_dong_log 
+VALUES ('Thêm thành công');
 INSERT INTO hop_dong
 VALUES (ma_hop_dong, ngay_lam_hop_dong, ngay_ket_thuc, tien_dat_coc, ma_nhan_vien, ma_khach_hang, ma_dich_vu);
 END IF;
 END $$
 DELIMITER ;
-CALL sp_them_moi_hop_dong(9, '2022-05-30 00:00:00', '2022-06-30 00:00:00', 500, 1, 1, 1);
+CALL sp_them_moi_hop_dong(7, '2022-05-30 00:00:00', '2022-06-30 00:00:00', 500, 1, 1, 1);
+-- declare error_ms varchar(250);
+-- ma_hop_dong NOT IN (SELECT ma_hop_dong FROM hop_dong)
+-- SIGNAL SQLSTATE '45000'
+-- SET MESSAGE_TEXT = 'Nhập lại mã' ;
 
 -- Task 25
 DELIMITER $$
@@ -247,7 +256,7 @@ DROP TRIGGER tr_xoa_hop_dong;
 
 SET SQL_SAFE_UPDATES = 0;
 DELETE FROM hop_dong 
-WHERE ma_hop_dong = 8;
+WHERE ma_hop_dong = 6;
 
 -- Task 26
 DELIMITER $$
@@ -306,7 +315,7 @@ INSERT INTO khoang_thoi_gian_log VALUES (2, func_tinh_thoi_gian_hop_dong(1));
 
 -- Task 28
 DELIMITER $$
-CREATE PROCEDURE sp_xoa_dich_vu_va_hd_room()
+CREATE PROCEDURE sp_xoa_dich_vu_va_hd_house()
 BEGIN
 SET SQL_SAFE_UPDATES = 0;
 DELETE FROM dich_vu
@@ -319,5 +328,5 @@ WHERE (YEAR(hd.ngay_lam_hop_dong) BETWEEN 2015 AND 2025) AND dv.ten_dich_vu = 'H
 GROUP BY dv.ma_dich_vu) AS X);
 END $$
 DELIMITER ;
-DROP PROCEDURE sp_xoa_dich_vu_va_hd_room;
-CALL sp_xoa_dich_vu_va_hd_room();
+DROP PROCEDURE sp_xoa_dich_vu_va_hd_house;
+CALL sp_xoa_dich_vu_va_hd_house();
