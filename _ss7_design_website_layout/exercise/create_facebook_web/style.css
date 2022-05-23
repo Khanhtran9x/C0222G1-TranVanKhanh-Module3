@@ -1,0 +1,154 @@
+.container {
+    font-family: sans-serif;
+    position: relative;
+}
+.header {
+    background-color: #242526;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 50px;
+    padding: 0.5em;
+}
+.header-center {
+    position: absolute;
+    margin-top: 0.4em;
+    margin-left: 38%;
+    top: 0px;
+}
+
+.header-right {
+    position: absolute;
+    margin-top: 0.4em;
+    margin-left: 90%;
+    top: 0px;
+}
+
+.left{
+    width: 20%;
+    min-height: 400px;
+    float:left;
+    margin-bottom: 5px;
+    margin-top: 70px;
+}
+
+.content{
+    width: 58%;
+    min-height: 400px;
+    float:left;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    margin-top: 70px;
+}
+.right{
+    width: 20%;
+    min-height: 400px;
+    float:left;
+    margin-bottom: 5px;
+    margin-top: 70px;
+}
+
+.logo {
+    width: 2.5em;
+}
+
+.tb-icon {
+    width: 25em;
+    height: 3em;
+}
+
+.tr-icon {
+   align-content: center;
+}
+
+.td-icon {
+    width: 25%;
+    font-size: 20px;
+}
+
+.search {
+    position: absolute;
+    margin-top: 0.3em;
+    margin-left: 0.7em;
+    height: 2.5em;
+    border-radius: 2em;
+    border-collapse: collapse;
+    width: 13em;
+    padding: 0.2em;
+    border: none;
+    background-color: #3a3b3c;
+}
+
+.input-status {
+    position: absolute;
+    margin-top: 8px;
+    margin-left: 18px;
+    height: 2.5em;
+    border-radius: 2em;
+    border-collapse: collapse;
+    width: 500px;
+    border: none;
+    background-color: #3a3b3c;
+    font-size: 15px;
+}
+
+.td-story {
+    width: 7em;
+    height: 9em;
+    border-radius: 1em;
+}
+
+.d-story {
+    width: 590px;
+    margin: 0 auto;
+}
+
+.d-search {
+    background-color: #242526;
+    height: 120px;
+    border-radius: 1em;
+    width: 600px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.img-search {
+    width: 2.5em;
+    border-radius: 50%;
+    margin-left: 10px;
+    margin-top: 5px
+}
+
+.hr-search {
+    margin-left: 20px;
+    width: 560px;
+    position: absolute;
+    height: 0.5px;
+    background-color: #8d7d7d;
+    border: none;
+}
+
+.img-status {
+    font-size: 30px;
+}
+
+.img-photo {
+    font-size: 30px;
+}
+
+.img-feeling {
+    font-size: 30px;
+}
+
+.d-news {
+    background-color: #242526;
+    min-height: 800px;
+    border-radius: 1em;
+    width: 600px;
+    margin: 0 auto;
+    margin-top: 10px;
+    position: relative;
+    padding-top: 10px;
+}
