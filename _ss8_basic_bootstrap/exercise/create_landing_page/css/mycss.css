@@ -1,0 +1,27 @@
+.header-logo{
+    width: 7rem;
+    margin: 0 0.3rem;
+}
+.header {
+    background-color: white;
+}
+body{
+    font-family: Tahoma, SansSerif, serif;
+}
+.body-align{
+    justify-content: center;
+}
+.body-font-big {
+    font-size: 2.5rem;
+}
+.body-font-normal {
+    font-size: 1.3rem;
+}
+.body-text-margin-big{
+    margin-top: 4rem;
+    margin-bottom: 0;
+}
+.body-text-margin-small {
+    margin: 0;
+    padding: 0;
+}
