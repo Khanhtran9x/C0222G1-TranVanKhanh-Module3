@@ -1,0 +1,12 @@
+.header-logo{
+    width: 7rem;
+    margin: 0 0.3rem;
+}
+
+.body-justify-center {
+    justify-content: center;
+}
+
+.border-radius {
+    border-radius: 1rem;
+}
