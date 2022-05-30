@@ -15,35 +15,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="row bg-light">
-  <nav class="navbar navbar-light navbar-expand-md navigation-clean-search">
-    <div class="container-fluid">
-      <img class="header-logo"
-           src="https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE1Mu3b?ver=5c31">
-      <div class="collapse navbar-collapse" id="navcol-1">
-        <ul class="nav navbar-nav">
-          <li class="nav-item" role="presentation"><a class="nav-link text-dark" href="#">Contact</a></li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-dark" href="#" role="button" data-toggle="dropdown"
-               aria-haspopup="true" aria-expanded="false">
-              Services
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-          </li>
-          <li class="nav-item" role="presentation"><a class="nav-link text-dark" href="#">Login</a></li>
-          <li class="nav-item" role="presentation"><a class="nav-link text-dark" href="#">Sign Up</a></li>
-        </ul>
-
-      </div>
-    </div>
-  </nav>
-</div>
-
+<jsp:include page="header.jsp" />
 <div class="container">
   <div class="row body-justify-center">
     <p class="font-weight-normal" style="font-size: 1.5rem; margin-top: 2rem; margin-bottom: 0">
@@ -107,7 +79,7 @@
     </div>
   </div>
 </div>
-
+<jsp:include page="footer.jsp" />
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
         crossorigin="anonymous"></script>
