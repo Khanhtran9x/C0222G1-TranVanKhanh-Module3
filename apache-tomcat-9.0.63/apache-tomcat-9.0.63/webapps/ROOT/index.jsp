@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: kayli
-  Date: 30/05/2022
-  Time: 1:32 PM
+  Date: 31/05/2022
+  Time: 1:28 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -12,6 +12,6 @@
     <title>$Title$</title>
   </head>
   <body>
-  <c:redirect url="/product"></c:redirect>
+  <c:redirect url="/user"></c:redirect>
   </body>
 </html>
