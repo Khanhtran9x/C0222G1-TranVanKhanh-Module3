@@ -18,6 +18,15 @@
             <div class="bg-light p-3 border-radius">
                 <form action="/customer?action=add" method="post">
                     <div class="form-group">
+                        <label for="inputCustomerId">Customer ID</label>
+                        <input type="text" name="id" class="form-control" id="inputCustomerId" pattern="(KH)[-][\d]{4}"
+                               aria-describedby="emailHelp" placeholder="Enter customer id"
+                               title="Please input the right format KH-XXXX, X is a number" required>
+                        <c:if test="${messId != null}">
+                            <p>${mess}</p>
+                        </c:if>
+                    </div>
+                    <div class="form-group">
                         <label for="inputCustomerType">Customer Type</label>
                         <select class="form-control" id="inputCustomerType" name="type">
                             <c:forEach items="${customerTypeList}" var="customerType">
@@ -44,17 +53,32 @@
                     <div class="form-group">
                         <label for="inputCustomerIdCard">Customer ID Card</label>
                         <input type="text" name="idcard" class="form-control" id="inputCustomerIdCard"
-                               aria-describedby="emailHelp" placeholder="Enter customer id card" required>
+                               aria-describedby="emailHelp" placeholder="Enter customer id card"
+                               pattern="[\d]{9}"
+                               title="Please input 9 numbers" required>
+                        <c:if test="${messIdCard != null}">
+                            <p>${messIdCard}</p>
+                        </c:if>
                     </div>
                     <div class="form-group">
                         <label for="inputCustomerPhone">Customer Phone</label>
                         <input type="text" name="phone" class="form-control" id="inputCustomerPhone"
-                               aria-describedby="emailHelp" placeholder="Enter customer phone" required>
+                               aria-describedby="emailHelp" placeholder="Enter customer phone"
+                               pattern="(090)[\d]{7}|(091)[\d]{7}"
+                               title="Please input the right phone number" required>
+                        <c:if test="${messPhone != null}">
+                            <p>${messPhone}</p>
+                        </c:if>
                     </div>
                     <div class="form-group">
                         <label for="inputCustomerEmail">Customer Email</label>
-                        <input type="text" name="email" class="form-control" id="inputCustomerEmail"
-                               aria-describedby="emailHelp" placeholder="Enter customer email" required>
+                        <input type="email" name="email" class="form-control" id="inputCustomerEmail"
+                               aria-describedby="emailHelp" placeholder="Enter customer email"
+                               pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,6}"
+                               title="Please input the right email format" required>
+                        <c:if test="${messEmail != null}">
+                            <p>${messEmail}</p>
+                        </c:if>
                     </div>
                     <div class="form-group">
                         <label for="inputCustomerAddress">Customer Address</label>
@@ -69,7 +93,7 @@
         </div>
     </div>
 </div>
-
+<jsp:include page="../footer.jsp"></jsp:include>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>

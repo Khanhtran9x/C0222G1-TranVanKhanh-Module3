@@ -1,11 +1,15 @@
 package service.employee;
 
-import model.Customer;
-import model.Employee;
+import model.*;
+import repository.BaseRepository;
 import repository.employee.EmployeeRepositoryImpl;
 import repository.employee.IEmployeeRepository;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class EmployeeServiceImpl implements IEmployeeService{
@@ -14,6 +18,11 @@ public class EmployeeServiceImpl implements IEmployeeService{
     @Override
     public void insertEmployee(Employee employee) throws SQLException {
         employeeRepository.insertEmployee(employee);
+    }
+
+    @Override
+    public void insertUserName(User user) throws SQLException {
+        employeeRepository.insertUserName(user);
     }
 
     @Override
@@ -39,5 +48,19 @@ public class EmployeeServiceImpl implements IEmployeeService{
     @Override
     public boolean updateEmployee(Employee employee) throws SQLException {
         return employeeRepository.updateEmployee(employee);
+    }
+
+    public List<Position> selectAllPosition(){
+        return employeeRepository.selectAllPosition();
+    }
+
+    @Override
+    public List<EducationDegree> selectAllDegree() {
+        return employeeRepository.selectAllDegree();
+    }
+
+    @Override
+    public List<Division> selectAllDivision() {
+        return employeeRepository.selectAllDivision();
     }
 }

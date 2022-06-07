@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}\boostrap\css\style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}\datatables\css\dataTables.bootstrap4.min.css"/>
     <style>
-        .page-item.active .page-link{
+        .page-item.active .page-link {
             background-color: #046056 !important;
             z-index: 1;
             color: #fff;
@@ -116,6 +116,8 @@
         </div>
     </div>
 </div>
+
+<jsp:include page="../footer.jsp"></jsp:include>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

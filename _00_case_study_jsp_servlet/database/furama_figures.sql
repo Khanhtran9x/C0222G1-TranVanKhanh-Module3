@@ -14,6 +14,9 @@ VALUES (1, 'Diamond'),
        (3, 'Gold'),
        (4, 'Silver'),
        (5, 'Member');
+       
+INSERT INTO customer_type
+VALUES (6, 'Wood');
 
 INSERT INTO education_degree
 VALUES (1, 'Intermediate'),
@@ -38,11 +41,35 @@ VALUES (1, 'Kazim Benzema', '1993-01-01', '1945312334', 5000 ,'09413232287', 'be
        (3, 'Dejong', '1998-10-01', '1945311687', 4500 ,'094132312312', 'dejong@gmail.com', 'Hue', 3, 1, 2, 'dejongcute');
 
 INSERT INTO customer
-VALUES (1, 1, 'Khanh Tran', '1995-01-01', 0, '194531021', '09413232131', 'khanh@gmail.com', 'Quang Binh'),
-       (2, 2, 'Nguyen Lien', '1983-07-01', 1, '194531313', '09265646814', 'lien@gmail.com', 'Da Lat'),
-       (3, 4, 'Kha Nguyen', '1994-08-14', 0, '194531313', '09413234321', 'kha@gmail.com', 'Quang Ngai'),
-       (4, 3, 'Ha Vu', '1995-05-16', 0, '1945312342', '09413224141', 'vuha@gmail.com', 'Bac Lieu'),
-       (5, 1, 'Khanh Nguyen', '1995-05-05', 0, '194534314', '09413235423', 'khanhnguyen@gmail.com', 'Hue');
+VALUES ('KH-1234', 1, 'Khanh Tran', '1995-01-01', 0, '194531021', '09413232131', 'khanh@gmail.com', 'Quang Binh'),
+       ('KH-1235', 2, 'Nguyen Lien', '1983-07-01', 1, '194531313', '09265646814', 'lien@gmail.com', 'Da Lat'),
+       ('KH-1236', 4, 'Kha Nguyen', '1994-08-14', 0, '194531313', '09413234321', 'kha@gmail.com', 'Quang Ngai'),
+       ('KH-1237', 3, 'Ha Vu', '1995-05-16', 0, '1945312342', '09413224141', 'vuha@gmail.com', 'Bac Lieu'),
+       ('KH-1238', 1, 'Khanh Nguyen', '1995-05-05', 0, '194534314', '09413235423', 'khanhnguyen@gmail.com', 'Hue');
        
-INSERT INTO customer (customer_type_id, customer_name, customer_birthday, customer_gender, customer_id_card, customer_phone, customer_email,customer_address) 
-VALUES (5, 'Nguyen Nguyen', '1973-01-01', 1, '194531431', '09413243234', 'nguyen@gmail.com', 'Binh Thuan');
+
+INSERT INTO service_type
+VALUES (1, 'Luxury'),
+       (2, 'International'),
+       (3, 'Class'),
+       (4, '5 stars');
+       
+INSERT INTO rent_type
+VALUES (1, 'Anually', 5000),
+       (2, 'Monthly', 500),
+       (3, 'Daily', 100),
+       (4, 'Hourly', 10);
+       
+INSERT INTO service
+VALUES ('DV-1234','Villa', 80, 1000, 7, 1, 1, 'President', 'Free Kara', 40, 5),
+       ('DV-1235', 'House', 100, 1500, 10, 2, 2, 'Super Star', 'Free Breakfirst', 50, 10),
+       ('DV-1236', 'Room', 40, 50, 2, 3, 3, 'Vip', 'Free Bus', 0, 0);
+
+INSERT INTO attach_service
+VALUES (1, 'Free Beverage', 5, 2, 'Available'),
+       (2, 'Free Bike Rent', 10, 2, 'Available');
+       
+INSERT INTO contract_detail(contract_id, attach_service_id, quantity)
+VALUES (11, 2, 2);
+
+       

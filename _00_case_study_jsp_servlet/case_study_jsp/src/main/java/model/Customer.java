@@ -1,7 +1,7 @@
 package model;
 
 public class Customer {
-    private int id;
+    private String id;
     private int typeId;
     private String type;
     private String name;
@@ -11,6 +11,24 @@ public class Customer {
     private String phone;
     private String email;
     private String address;
+    private String service;
+    private String attachService;
+
+    public Customer(String id, int typeId, String type, String name, String birthDay,
+                    String gender, String idCard, String phone, String email, String address, String service, String attachService) {
+        this.id = id;
+        this.typeId = typeId;
+        this.type = type;
+        this.name = name;
+        this.birthDay = birthDay;
+        this.gender = gender;
+        this.idCard = idCard;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.service = service;
+        this.attachService = attachService;
+    }
 
     public Customer() {
     }
@@ -38,7 +56,7 @@ public class Customer {
         this.address = address;
     }
 
-    public Customer(int id, int typeId, String type, String name, String birthDay, String gender,
+    public Customer(String id, int typeId, String type, String name, String birthDay, String gender,
                     String idCard, String phone, String email, String address) {
         this.id = id;
         this.typeId = typeId;
@@ -52,7 +70,7 @@ public class Customer {
         this.address = address;
     }
 
-    public Customer(int id, int typeId, String name, String birthDay, String gender,
+    public Customer(String id, int typeId, String name, String birthDay, String gender,
                     String idCard, String phone, String email, String address) {
         this.id = id;
         this.typeId = typeId;
@@ -65,6 +83,22 @@ public class Customer {
         this.address = address;
     }
 
+    public String getService() {
+        return service;
+    }
+
+    public void setService(String service) {
+        this.service = service;
+    }
+
+    public String getAttachService() {
+        return attachService;
+    }
+
+    public void setAttachService(String attachService) {
+        this.attachService = attachService;
+    }
+
     public int getTypeId() {
         return typeId;
     }
@@ -73,11 +107,11 @@ public class Customer {
         this.typeId = typeId;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

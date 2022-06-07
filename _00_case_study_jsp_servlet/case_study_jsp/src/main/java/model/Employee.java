@@ -10,9 +10,56 @@ public class Employee {
     private String email;
     private String address;
     private int positionId;
+    private String positionName;
     private int degreeId;
+    private String degreeName;
     private int divisionId;
+    private String divisionName;
     private String userName;
+
+    public String getPositionName() {
+        return positionName;
+    }
+
+    public void setPositionName(String positionName) {
+        this.positionName = positionName;
+    }
+
+    public String getDegreeName() {
+        return degreeName;
+    }
+
+    public void setDegreeName(String degreeName) {
+        this.degreeName = degreeName;
+    }
+
+    public String getDivisionName() {
+        return divisionName;
+    }
+
+    public void setDivisionName(String divisionName) {
+        this.divisionName = divisionName;
+    }
+
+    public Employee(int id, String name, String birthday, String idCard, double salary, String phone, String email,
+                    String address, int positionId, String positionName, int degreeId, String degreeName,
+                    int divisionId, String divisionName, String userName) {
+        this.id = id;
+        this.name = name;
+        this.birthday = birthday;
+        this.idCard = idCard;
+        this.salary = salary;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.positionId = positionId;
+        this.positionName = positionName;
+        this.degreeId = degreeId;
+        this.degreeName = degreeName;
+        this.divisionId = divisionId;
+        this.divisionName = divisionName;
+        this.userName = userName;
+    }
 
     public Employee(String name, String birthday, String idCard, double salary, String phone, String email, String address, int positionId, int degreeId, int divisionId, String userName) {
         this.name = name;

@@ -33,7 +33,7 @@
                 <div class="form-group mx-sm-3">
                     <select class="form-control" aria-label="Default select example" name="address">
                         <option value="">Select address</option>
-                        <c:forEach items="${employeeList}" var="employee">
+                        <c:forEach items="${employees}" var="employee">
                             <option value="${employee.address}">${employee.address}</option>
                         </c:forEach>
                     </select>
@@ -74,9 +74,9 @@
                         <td>${employee.phone}</td>
                         <td>${employee.email}</td>
                         <td>${employee.address}</td>
-                        <td>${employee.positionId}</td>
-                        <td>${employee.degreeId}</td>
-                        <td>${employee.divisionId}</td>
+                        <td>${employee.positionName}</td>
+                        <td>${employee.degreeName}</td>
+                        <td>${employee.divisionName}</td>
                         <td>${employee.userName}</td>
                         <td>
                             <a class="text-white" href="/employee?action=edit&id=${employee.id}">
@@ -124,7 +124,7 @@
         </div>
     </div>
 </div>
-
+<jsp:include page="../footer.jsp"></jsp:include>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>

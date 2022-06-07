@@ -34,7 +34,7 @@ FOREIGN KEY(username) REFERENCES username(username)
 );
 
 CREATE TABLE employee(
-employee_id INT NOT NULL PRIMARY KEY,
+employee_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 employee_name VARCHAR(45),
 employee_birthday DATE,
 employee_id_card VARCHAR(45),
@@ -58,7 +58,7 @@ customer_type_name VARCHAR(450)
 );
 
 CREATE TABLE customer(
-customer_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+customer_id VARCHAR(7) NOT NULL PRIMARY KEY,
 customer_type_id INT,
 customer_name VARCHAR(45),
 customer_birthday DATE,
@@ -81,14 +81,14 @@ rent_type_cost DOUBLE
 );
 
 CREATE TABLE service(
-service_id INT NOT NULL PRIMARY KEY,
+service_id VARCHAR(45) NOT NULL PRIMARY KEY,
 service_name VARCHAR(45),
 service_area INT,
 service_cost DOUBLE,
 service_max_people INT,
 rent_type_id INT,
 service_type_id INT,
-stardard_room VARCHAR(45),
+standard_room VARCHAR(45),
 description_other_convenience VARCHAR(45),
 pool_area DOUBLE,
 number_of_floors INT,
@@ -105,25 +105,26 @@ attach_service_status VARCHAR(45)
 );
 
 CREATE TABLE contract(
-contract_id INT NOT NULL PRIMARY KEY,
+contract_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 contract_start_date DATETIME,
 contract_end_date DATETIME,
 contract_deposit DOUBLE,
 contract_total_money DOUBLE,
 employee_id INT,
-customer_id INT,
-service_id INT,
+customer_id VARCHAR(7),
+service_id VARCHAR(45),
 FOREIGN KEY(employee_id) REFERENCES employee(employee_id),
 FOREIGN KEY(customer_id) REFERENCES customer(customer_id),
 FOREIGN KEY(service_id) REFERENCES service(service_id)
 );
 
 CREATE TABLE contract_detail(
-contract_detail_id INT NOT NULL PRIMARY KEY,
+contract_detail_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 contract_id INT,
 attach_service_id INT,
 quantity INT,
 FOREIGN KEY(attach_service_id) REFERENCES attach_service(attach_service_id),
 FOREIGN KEY(contract_id) REFERENCES contract(contract_id)
 );
+
 

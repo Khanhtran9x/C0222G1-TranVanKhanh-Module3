@@ -1,4 +1,5 @@
-<%--
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="model.User" %><%--
   Created by IntelliJ IDEA.
   User: kayli
   Date: 01/06/2022
@@ -24,10 +25,10 @@
         </div>
         <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 row p-1">
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 p-1" style="justify-content: center">
-                <img src="..\img\banner.jpg" width="85%"  alt="">
+                <img src="..\img\banner.jpg" width="85%" alt="">
             </div>
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 p-1" style="justify-content: center">
-                <img src="..\img\banner.jpg" width="85%"  alt="">
+                <img src="..\img\banner.jpg" width="85%" alt="">
             </div>
         </div>
         <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2" style="padding: 0.5rem 0">
@@ -62,13 +63,15 @@
     </div>
 </div>
 
-<div class="container-fluid bg-frm-darkblue">
+<div class="container-fluid bg-frm-darkblue"
+     style="margin-bottom: 1rem;position: sticky;top: 0;z-index: 99; margin-bottom: 1rem">
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav" style="justify-content: center">
+            <div class="collapse navbar-collapse" id="navbarNav" style="justify-content: space-around; width: 100%;">
                 <ul class="navbar-nav">
                     <li class="nav-item active">
                         <a class="nav-link text-white" href="/index.jsp">Home <span class="sr-only">(current)</span></a>
@@ -82,38 +85,64 @@
                     <li class="nav-item">
                         <a class="nav-link text-white" href="#">Event</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Customer
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="/customer">Customer list</a>
-                            <a class="dropdown-item" href="/customer?action=add">Add new customer</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="/customer-type">Customer type</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Employee
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
-                            <a class="dropdown-item" href="/employee">Employee list</a>
-                            <a class="dropdown-item" href="/employee?action=add">Add new employee</a>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="#">Service</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="#">Entertainment</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="#">Location</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="#">Voucher</a>
-                    </li>
+                            <li class="nav-item dropdown">
+                                <c:if test="${userSession != null}">
+                                <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Customer
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="/customer">Customer list</a>
+                                    <a class="dropdown-item" href="/customer?action=active">Active customer</a>
+                                    <a class="dropdown-item" href="/customer?action=add">Add new customer</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="/customer-type">Customer type</a>
+                                </div>
+                                </c:if>
+                            </li>
+
+                    <div>
+                        <c:if test="${userSession.role == 'Director' || userSession.role == 'Manager'}">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown2" role="button"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Employee
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                                    <a class="dropdown-item" href="/employee">Employee list</a>
+                                    <a class="dropdown-item" href="/employee?action=add">Add new employee</a>
+                                </div>
+                            </li>
+                        </c:if>
+                    </div>
+                    <div>
+                        <c:if test="${userSession != null}">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown3" role="button"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Service
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
+                                    <a class="dropdown-item" href="/service">Service list</a>
+                                    <a class="dropdown-item" href="/service?action=add">Add new service</a>
+                                </div>
+                            </li>
+                        </c:if>
+                    </div>
+                    <div>
+                        <c:if test="${userSession != null}">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown4" role="button"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Contract
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown4">
+                                    <a class="dropdown-item" href="/contract?action=add">Add new contract</a>
+                                    <a class="dropdown-item" href="/contract_detail?action=add">Add new contract detail</a>
+                                </div>
+                            </li>
+                        </c:if>
+                    </div>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="#">About</a>
                     </li>
@@ -121,10 +150,17 @@
                         <a class="nav-link text-white" href="#">Contact</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="#">Login</a>
+                        <c:if test="${userSession != null}">
+                            <a class="nav-link text-white" href="#">${userSession.userName}</a>
+                        </c:if>
+                        <c:if test="${userSession == null}">
+                            <a class="nav-link text-white" href="/login">Login</a>
+                        </c:if>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="#">Sign up</a>
+                        <c:if test="${userSession != null}">
+                            <a class="nav-link text-white" href="/logout">Logout</a>
+                        </c:if>
                     </li>
                 </ul>
             </div>

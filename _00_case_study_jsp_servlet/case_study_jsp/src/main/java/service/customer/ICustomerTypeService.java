@@ -14,4 +14,5 @@ public interface ICustomerTypeService {
     List<CustomerType> selectAllCustomerType();
 
     List<CustomerType> sortByName();
+
 }

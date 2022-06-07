@@ -28,8 +28,13 @@
                     </div>
                     <div class="form-group">
                         <label for="inputEmployeeIdCard">Employee ID Card</label>
-                        <input type="text" name="idcard" class="form-control" id="inputEmployeeIdCard"
+                        <input type="text" name="idCard" class="form-control" id="inputEmployeeIdCard"
                                aria-describedby="emailHelp" placeholder="Enter employee id card" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmployeeSalary">Employee Salary</label>
+                        <input type="text" name="salary" class="form-control" id="inputEmployeeSalary"
+                               aria-describedby="emailHelp" placeholder="Enter employee salary" required>
                     </div>
                     <div class="form-group">
                         <label for="inputEmployeePhone">Employee Phone</label>
@@ -47,11 +52,34 @@
                                aria-describedby="emailHelp" placeholder="Enter employee address" required>
                     </div>
                     <div class="form-group">
-                        <label for="inputEmployeeAddress">Employee Address</label>
-                        <input type="text" name="address" class="form-control" id="inputEmployeeAddress"
-                               aria-describedby="emailHelp" placeholder="Enter employee address" required>
+                        <label for="inputEmployeePosition">Employee Position</label>
+                        <select class="form-control" id="inputEmployeePosition" name="position">
+                            <c:forEach items="${positionList}" var="position">
+                                <option value="${position.positionId}">${position.positionName}</option>
+                            </c:forEach>
+                        </select>
                     </div>
-
+                    <div class="form-group">
+                        <label for="inputEmployeeDegree">Employee Degree</label>
+                        <select class="form-control" id="inputEmployeeDegree" name="degree">
+                            <c:forEach items="${educationDegreeList}" var="degree">
+                                <option value="${degree.educationDegreeId}">${degree.educationDegreeName}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmployeeDivision">Employee Position Name</label>
+                        <select class="form-control" id="inputEmployeeDivision" name="division">
+                            <c:forEach items="${divisionList}" var="division">
+                                <option value="${division.divisionId}">${division.divisionName}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmployeeUsername">Employee Username</label>
+                        <input type="text" name="userName" class="form-control" id="inputEmployeeUsername"
+                               aria-describedby="emailHelp" placeholder="Enter employee username" required>
+                    </div>
                     <button type="submit" class="btn bg-frm-darkblue text-white">Submit</button>
                     <button type="reset" class="btn btn-secondary">Reset</button>
                 </form>
@@ -59,7 +87,7 @@
         </div>
     </div>
 </div>
-
+<jsp:include page="../footer.jsp"></jsp:include>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
