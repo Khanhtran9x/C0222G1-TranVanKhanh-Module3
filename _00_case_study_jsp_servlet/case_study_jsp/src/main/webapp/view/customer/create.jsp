@@ -22,7 +22,7 @@
                         <input type="text" name="id" class="form-control" id="inputCustomerId" pattern="(KH)[-][\d]{4}"
                                aria-describedby="emailHelp" placeholder="Enter customer id"
                                title="Please input the right format KH-XXXX, X is a number" required>
-                        <c:if test="${messId != null}">
+                        <c:if test="${mess != null}">
                             <p>${mess}</p>
                         </c:if>
                     </div>
@@ -56,8 +56,8 @@
                                aria-describedby="emailHelp" placeholder="Enter customer id card"
                                pattern="[\d]{9}"
                                title="Please input 9 numbers" required>
-                        <c:if test="${messIdCard != null}">
-                            <p>${messIdCard}</p>
+                        <c:if test="${mess != null}">
+                            <p>${mess}</p>
                         </c:if>
                     </div>
                     <div class="form-group">
@@ -66,8 +66,8 @@
                                aria-describedby="emailHelp" placeholder="Enter customer phone"
                                pattern="(090)[\d]{7}|(091)[\d]{7}"
                                title="Please input the right phone number" required>
-                        <c:if test="${messPhone != null}">
-                            <p>${messPhone}</p>
+                        <c:if test="${mess != null}">
+                            <p>${mess}</p>
                         </c:if>
                     </div>
                     <div class="form-group">
@@ -76,8 +76,8 @@
                                aria-describedby="emailHelp" placeholder="Enter customer email"
                                pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,6}"
                                title="Please input the right email format" required>
-                        <c:if test="${messEmail != null}">
-                            <p>${messEmail}</p>
+                        <c:if test="${mess != null}">
+                            <p>${mess}</p>
                         </c:if>
                     </div>
                     <div class="form-group">

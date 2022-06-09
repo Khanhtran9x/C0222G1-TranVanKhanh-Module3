@@ -11,7 +11,7 @@
 <div class="container-fluid">
     <div class="container">
         <div class="row body-justify-center">
-            <p class="font-weight-normal" style="font-size: 2.5rem; margin-top: 2rem; margin-bottom: 0">
+            <p class="font-weight-normal" style="font-size: 1.5rem; margin-bottom: 0">
                 Add New Contract Detail</p>
         </div>
         <div class="row body-justify-center">

@@ -68,7 +68,15 @@ public class CustomerServlet extends javax.servlet.http.HttpServlet {
     }
 
     private void insertCustomer(HttpServletRequest request, HttpServletResponse response){
+        List<Customer> customerList =customerService.selectAllCustomer();
         String id = request.getParameter("id");
+        for (Customer customer: customerList) {
+            if (id.equals(customer.getId())){
+                String messId = "Please input again, this id is already taken";
+                forward(request, response, messId);
+                break;
+            }
+        }
         if (!customerService.checkRegexId(id)){
            String messId = "Please input the right format KH-XXXX, X is a number";
             forward(request, response, messId);
